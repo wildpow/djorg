@@ -25,3 +25,11 @@ Personal Bookmarks:
 {% else %}
 yes, we have no personal bookmarks
 {% endif %}
+
+<h2>New Bookmark</h2>
+
+<form method="POST" class="bookmark=form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Save</button>
+</form>
