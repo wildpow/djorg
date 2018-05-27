@@ -12,3 +12,16 @@ Bookmarks:
 {% else %}
 Yes, we have no bookmarks
 {% endif %}
+
+{% if personal_bookmarks %}
+
+Personal Bookmarks:
+
+<ol>
+    {% for bookmark in personal_bookmarks %}
+    <li><a href="{{ bookmark.url }}">{{ bookmark.name }}</a></li>
+    {% endfor %}
+  </ol>
+{% else %}
+yes, we have no personal bookmarks
+{% endif %}
