@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]# 'django.middleware.csrf.CsrfViewMiddleware',
+]
+# 'django.middleware.csrf.CsrfViewMiddleware',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

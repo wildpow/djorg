@@ -16,11 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-
+# re_path
 from rest_framework import routers
+# from rest_framework_simplejwt.views import (
+#     TokenObtainPairView,
+#     TokenRefreshView,
+#     TokenVerifyView
+# )
 from notes.api import NoteViewSet
 
 from graphene_django.views import GraphQLView
+
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewSet)
@@ -30,5 +36,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', TemplateView.as_view(template_name='djorg_base.html')),
     path('bookmarks/', include('bookmarks.urls')),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    # re_path(r'^api/token/$', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # re_path(r'^api/token/refresh/$', TokenRefreshView.as_view(), name='token_refresh'),
+    # re_path(r'^api/token/verify/$', TokenVerifyView.as_view(), name='token_verify'),
 ]

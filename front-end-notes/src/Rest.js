@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
-
-
+import axios from 'axios';
+import NewStuff from './New';
 class Rest extends Component {
-  state = { stuff: []}
-  componentWillMount() {
-    fetch('http://127.0.0.1:8000/api/notes/')
-      .then((stuff) => {
-        console.log(stuff.json())
-        return stuff.json();
+  state = { notes: []}
+  componentDidMount() {
+    axios.get('http://127.0.0.1:8000/api/notes/')
+      .then(res => {
+        // console.log(res)
+        const notes = res.data;
+        console.log(notes)
+        this.setState({ notes })
       })
-      .then((poop) => {
-        this.setState({
-          stuff: poop
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    // fetch('http://127.0.0.1:8000/api/notes/')
+    //   .then((stuff) => {
+    //     return stuff.json();
+    //   })
+    //   .then((note) => {
+    //     this.setState({
+    //       notes: note
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
   }
   render() {
     return (
       <div>
-        {this.state.stuff.map((item, index) => (
+        {/* {this.state.notes.map((item, index) => (
           <div key={index}>
             {item.title}
             {item.content}
           </div>
-        ))}
-        {console.log(this.state.stuff)}
+        ))} */}
+        <NewStuff title="Rest Notes" notes={this.state.notes} Params="Rest"/>
       </div>
     );
   }
