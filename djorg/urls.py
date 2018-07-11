@@ -23,17 +23,21 @@ from rest_framework import routers
 #     TokenRefreshView,
 #     TokenVerifyView
 # )
-from notes.api import NoteViewSet
+from notes.api import NoteViewSet, PostStuff #POST
+from notes.views import CreateNote # POST 
+
 
 from graphene_django.views import GraphQLView
 
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewSet)
+# router.register(r'createnote', CreateNote.as_view()) #POSt stuff
 
 urlpatterns = [
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('api/', include(router.urls)),
+    path('newnotes/', CreateNote.as_view()),
     path('', TemplateView.as_view(template_name='djorg_base.html')),
     path('bookmarks/', include('bookmarks.urls')),
     path('admin/', admin.site.urls),
